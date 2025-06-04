@@ -23,9 +23,9 @@
 <!-- Regular container for the rest of the content -->
 <div class="container mt-4">
     
-    <div class="d-flex justify-content-center align-items-center mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="mb-0">All Places</h1>
-        <!--
+
         <div>
             <label for="typeFilter" class="form-label me-2">Filter by Type:</label>
             <select id="typeFilter" class="form-select d-inline-block w-auto">
@@ -38,7 +38,6 @@
                 <option value="Other">Other</option>
             </select>
         </div>
-         -->
     </div>
    
     <div id="placeCards" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -113,11 +112,11 @@
   </ul>
 </nav>
 
+<!--For map and filter functionalities-->
 <script>
     const mapToken = '<%- process.env.MAPBOX_TOKEN %>';
     const places = <%- JSON.stringify(placesGeoJSON) %>;
 
-    /*Filter
     const typeFilter = document.getElementById('typeFilter');
     const cards = document.querySelectorAll('.place-card');
 
@@ -132,7 +131,6 @@
             }
         });
     });
-    */
 </script>
 
 <script src="/javascripts/clusterMap.js"></script>
