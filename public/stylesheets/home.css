@@ -34,3 +34,14 @@ body {
     color: #333;
     text-shadow: none;
 }
+
+@media (max-width: 800px)  {
+    h1{
+        margin-bottom: 20px;
+        font-size: 40px;
+    }
+    .lead{
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+}
