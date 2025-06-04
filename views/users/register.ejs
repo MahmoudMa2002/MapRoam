@@ -21,9 +21,12 @@
                             <label class="form-label fw-bold text-dark" for="username">
                                 <i class="fas fa-user me-2 text-primary"></i>Username
                             </label>
-                            <input class="form-control form-control-lg border-2" type="text" id="username" name="username" required autofocus placeholder="Enter your username">
+                            <input class="form-control form-control-lg border-2" type="text" id="username" name="username" required minlength="3" pattern=".{3,}" placeholder="Enter your username">
                             <div class="valid-feedback">
                                 <i class="fas fa-check-circle me-1"></i>Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Username must be at least 3 characters.
                             </div>
                         </div>
 
@@ -36,6 +39,9 @@
                             <div class="valid-feedback">
                                 <i class="fas fa-check-circle me-1"></i>Looks good!
                             </div>
+                            <div class="invalid-feedback">
+                                Please enter a valid email.
+                            </div>
                         </div>
 
                         <!-- Password -->
@@ -43,9 +49,12 @@
                             <label class="form-label fw-bold text-dark" for="password">
                                 <i class="fas fa-lock me-2 text-primary"></i>Password
                             </label>
-                            <input class="form-control form-control-lg border-2" type="password" id="password" name="password" required placeholder="Create a password">
+                            <input class="form-control form-control-lg border-2" type="password" id="password" name="password" required minlength="6" placeholder="Create a password">
                             <div class="valid-feedback">
                                 <i class="fas fa-check-circle me-1"></i>Looks good!
+                            </div>
+                            <div class="invalid-feedback">
+                                Password must be at least 6 characters.
                             </div>
                         </div>
 
@@ -69,3 +78,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Bootstrap validation script
+    (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.validated-form');
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
