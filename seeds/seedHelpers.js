@@ -1,0 +1,47 @@
+module.exports.descriptors = [
+    'Cozy',
+    'Rustic',
+    'Modern',
+    'Elegant',
+    'Trendy',
+    'Hipster',
+    'Classic',
+    'Charming',
+    'Lively',
+    'Vibrant',
+    'Hidden',
+    'Sunny',
+    'Bustling',
+    'Peaceful',
+    'Iconic',
+    'Inviting',
+    'Artisan',
+    'Delightful',
+    'Local'
+];
+
+module.exports.places = [
+    'Cafe',
+    'Coffee House',
+    'Bistro',
+    'Bakery',
+    'Tea Lounge',
+    'Diner',
+    'Grill',
+    'Tavern',
+    'Eatery',
+    'Restaurant',
+    'Juice Bar',
+    'Market',
+    'Souk',
+    'Bazaar',
+    'Street Stall',
+    'Gallery',
+    'Cultural Spot',
+    'Landmark',
+    'Viewpoint',
+    'Plaza',
+    'Square',
+    'Hub'
+];
+

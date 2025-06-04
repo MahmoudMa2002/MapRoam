@@ -1,0 +1,154 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container-fluid bg-light min-vh-100 py-8">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <!-- Header Card -->
+            <div class="card shadow-sm mb-4 border-0">
+                <div class="card-header bg-dark text-white text-center py-3">
+                    <h1 class="card-title mb-0 h3">
+                        <i class="fas fa-edit me-2"></i>Edit Place
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Main Form Card -->
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+                    <form action="/places/<%= place._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                        
+                        <!-- Title Input -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="title">
+                                <i class="fas fa-heading me-2 text-primary"></i>Title
+                            </label>
+                            <input class="form-control form-control-lg border-2" type="text" id="title" name="place[title]" value="<%= place.title %>" required placeholder="Enter place title">
+                            <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Looks good!
+                            </div>
+                        </div>
+
+                        <!-- Type Selection -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="type">
+                                <i class="fas fa-tag me-2 text-primary"></i>Type
+                            </label>
+                            <select class="form-select form-select-lg border-2" id="type" name="place[type]" required>
+                                <% const types = ['Camp', 'Coffee Shop', 'Restaurant', 'Tourist Spot', 'Market', 'Other']; %>
+                                <% types.forEach(t => { %>
+                                    <option value="<%= t %>" <%= place.type === t ? 'selected' : '' %>><%= t %></option>
+                                <% }) %>
+                            </select>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Perfect choice!
+                            </div>
+                        </div>
+
+                        <!-- Location Input -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="location">
+                                <i class="fas fa-map-marker-alt me-2 text-primary"></i>Location
+                            </label>
+                            <input class="form-control form-control-lg border-2" type="text" id="location" name="place[location]" value="<%= place.location %>" required placeholder="Enter location">
+                            <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Great location!
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="priceRange">
+                                <i class="fas fa-dollar-sign me-2 text-primary"></i>Price Range
+                            </label>
+                            <select class="form-select form-select-lg border-2" id="priceRange" name="place[priceRange]">
+                                <% const priceRanges = ['$', '$$', '$$$', '$$$$']; %>
+                                <% priceRanges.forEach(range => { %>
+                                    <option value="<%= range %>" <%= place.priceRange === range ? 'selected' : '' %>><%= range %></option>
+                                <% }) %>
+                            </select>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Price range selected!
+                            </div>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="description">
+                                <i class="fas fa-align-left me-2 text-primary"></i>Description
+                            </label>
+                            <textarea class="form-control border-2" id="description" name="place[description]" rows="4" required placeholder="Describe this place..."><%= place.description %></textarea>
+                            <div class="valid-feedback">
+                                <i class="fas fa-check-circle me-1"></i>Great description!
+                            </div>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark" for="image">
+                                <i class="fas fa-camera me-2 text-primary"></i>Add More Images
+                            </label>
+                            <div class="input-group">
+                                <input type="file" class="form-control border-2" id="image" name="image" multiple accept="image/*">
+                                <label class="input-group-text bg-dark text-white" for="image">
+                                    <i class="fas fa-upload me-2"></i>Browse
+                                </label>
+                            </div>
+                            <div class="form-text text-muted">
+                                <i class="fas fa-info-circle me-1"></i>You can select multiple images at once
+                            </div>
+                        </div>
+
+                        <!-- Current Images Management -->
+                        <% if (place.images && place.images.length > 0) { %>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold text-dark">
+                                <i class="fas fa-images me-2 text-primary"></i>Current Images
+                            </label>
+                            <div class="row g-3">
+                                <% place.images.forEach(function(img, i) { %>
+                                <div class="col-6 col-md-4">
+                                    <div class="card h-100 shadow-sm position-relative">
+                                        <img src="<%= img.thumbnail %>" class="card-img-top" alt="Place image" style="height: 150px; object-fit: cover;">
+                                        <div class="card-body p-2">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="image-<%= i %>" name="deleteImages[]" value="<%= img.filename %>">
+                                                <label class="form-check-label text-danger fw-bold" for="image-<%= i %>">
+                                                    <i class="fas fa-trash me-1"></i>Delete
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+                            </div>
+                            <div class="alert alert-light mt-3" role="alert">
+                                <i class="fas fa-exclamation-triangle me-2"></i>
+                                <strong>Warning:</strong> Selected images will be permanently deleted when you update the place.
+                            </div>
+                        </div>
+                        <% } %>
+
+                        <!-- Action Buttons -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-5">
+                            <a href="/places/<%= place._id %>" class="btn btn-outline-secondary btn-lg">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Place
+                            </a>
+                            <button type="submit" class="btn btn-secondary btn-lg px-4">
+                                <i class="fas fa-save me-2"></i>Update Place
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Help Text -->
+            <div class="text-center mt-4 mb-4">
+                <small class="text-muted ">
+                    <i class="fas fa-lightbulb me-1"></i>
+                    Make sure all required fields are filled out before updating
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
