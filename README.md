@@ -1,20 +1,12 @@
 # MapRoam
 
-**MapRoam** is a web application designed to help users discover, share and locate experiences related to variouse places.
-
 **Live Demo**: [Visit MapRoam on Render](https://jomap.onrender.com)
 
 ---
 
-## What's Different from the Original YelpCamp?
+## Project Background
 
-This project was built from scratch following the project **YelpCamp**, from Colt Steele’s Web Developer Bootcamp, but has been improved and extended into a modified version called MapRoam:
-
-- **Expanded Categories**: Places are not limited to camps — users can now explore and add **coffee shops, tourist attractions, resturants**, and more.
-- **Category Tags**: Each listing includes a visible category label, making browsing and filtering easier.
-- **Styling Fixes**: Improved layout, better spacing, cleaner buttons, and a more modern UI than the original YelpCamp.
-- **Hosted on Render**: Publicly accessible deployment with reliable hosting at [maproam.onrender.com](https://jomap.onrender.com).
-- **Enhanced Responsiveness**: Mobile-friendly layout with better support for small screens.
+MapRoam is a full-stack location discovery app originally inspired by the YelpCamp concept from Colt Steele’s Web Developer Bootcamp. It has been expanded into a versatile platform supporting a variety of place types (e.g., coffee shops, tourist spots), a modern responsive UI, and interactive category-based filtering.
 
 ---
 
@@ -119,4 +111,4 @@ This project was built from scratch following the project **YelpCamp**, from Col
 
 ---
 
-*This project was built from scratch as part of Colt Steele's [`The Web Developer Bootcamp`] course to gain hands-on experience with full-stack web development.*
+*This project  was built independently while following Colt Steele’s [`The Web Developer Bootcamp`] course to gain hands-on experience with full-stack web development.*
