@@ -20,7 +20,11 @@ MapRoam is a full-stack location discovery app originally inspired by the YelpCa
 - **Image Uploads**: Upload photos for each location using Cloudinary.
 - **Reviews and Ratings**: Users can leave and delete feedback on locations.
 - **Responsive Design**: Works well on desktop, tablet, and mobile devices.
-
+- **Session Support**: Persistent sessions for login states using express-session and MongoDB
+- **Flash Messages**: Instant feedback for user actions (e.g., success, errors, alerts)
+- **Server-Side Validation**: Validates form data using Joi to ensure clean and secure input
+- **Custom Error Handling**: Handling of 404s, server errors, and validation failures
+  
 ---
 
 ## Technologies Used
