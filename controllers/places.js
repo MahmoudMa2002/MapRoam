@@ -16,11 +16,9 @@ module.exports.index = async (req, res) => {
 
     const totalPages = Math.ceil(totalPlaces / ITEMS_PER_PAGE);
 
-    // Convert all places to GeoJSON format
-    const allPlaces = await Place.find({}); // No pagination here
     const placesGeoJSON = {
         type: 'FeatureCollection',
-        features: allPlaces.map(place => ({
+        features: places.map(place => ({
             type: 'Feature',
             geometry: place.geometry,
             properties: {
@@ -38,6 +36,7 @@ module.exports.index = async (req, res) => {
         placesGeoJSON
     });
 };
+
 module.exports.renderNewForm = (req, res) => {
     res.render('places/new');
 };
@@ -46,13 +45,18 @@ module.exports.createPlace = async (req, res, next) => {
     const geoData = await geocoder.forwardGeocode({
         query: req.body.place.location,
         limit: 1
-    }).send()
+    }).send();
+
     const place = new Place(req.body.place);
-    place.geometry = geoData.body.features[0].geometry
-    place.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    place.geometry = geoData.body.features[0].geometry;
+    place.images = req.files.map(f => ({
+        url: f.path.replace('/upload/', '/upload/q_auto,f_auto/'), 
+        filename: f.filename
+    }));
     place.author = req.user._id;
     await place.save();
-    req.flash('success', 'Successfully made a new Place!')
+
+    req.flash('success', 'Successfully made a new Place!');
     res.redirect(`/places/${place._id}`);
 };
 
