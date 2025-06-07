@@ -44,10 +44,12 @@
         <% for (let place of places) { %>
         <div class="col place-card" data-type="<%= place.type %>">
             <div class="card h-100 shadow-sm">
-                <% if (place.images && place.images.length > 0) { %>
-                  <img src="<%= place.images[0].url %>" class="card-img-top img-fluid" alt="<%= place.title %>">
-                <% } else { %>
-                   <img src="https://res.cloudinary.com/dqcv0p9p6/image/upload/v1748956500/YelpCamp/z839us5grc9a4bfjvbds.avif" class="card-img-top img-fluid" alt="Default Place Image">
+              <% if (place.images && place.images.length > 0) { 
+                  const optimizedUrl = place.images[0].url.replace('/upload/', '/upload/q_auto,f_auto,w_800/');
+                %>
+            <img src="<%= optimizedUrl %>" class="card-img-top img-fluid" alt="<%= place.title %>">
+            <% } else { %>
+                  <img src="https://res.cloudinary.com/dqcv0p9p6/image/upload/q_auto,f_auto,w_800/v1748956500/YelpCamp/z839us5grc9a4bfjvbds.avif" class="card-img-top img-fluid" alt="Default Place Image">
             <% } %>
 
                 <div class="card-body d-flex flex-column">
