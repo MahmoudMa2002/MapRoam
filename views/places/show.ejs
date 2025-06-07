@@ -8,10 +8,12 @@
       <!-- Carousel -->
       <div id="placeCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
-          <% place.images.forEach((img, i) => { %>
-          <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-            <img src="<%= img.url %>" class="d-block w-100" alt="">
-          </div>
+          <% place.images.forEach((img, i) => {
+            const optimizedUrl = img.url.replace('/upload/', '/upload/q_auto,f_auto,w_1000/');
+          %>
+            <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
+              <img src="<%= optimizedUrl %>" class="d-block w-100" alt="Place image">
+            </div>
           <% }) %>
         </div>
         <% if(place.images.length > 1) { %>
