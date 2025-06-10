@@ -2,6 +2,8 @@
 
 **Live Demo**: [Visit MapRoam on Render](https://jomap.onrender.com)
 
+![MapRoam UI Preview](https://res.cloudinary.com/dqcv0p9p6/image/upload/v1749575325/Screenshot_1_zr3lzp.png)
+
 ---
 
 ## Project Background
