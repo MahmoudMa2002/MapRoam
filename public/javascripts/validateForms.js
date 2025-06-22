@@ -1,4 +1,4 @@
-//Code from bootstrap
+// Code from bootstrap
 (function () {
     'use strict'
     
