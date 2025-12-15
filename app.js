@@ -30,9 +30,15 @@ const dbUrl = process.env.DB_URL;
 const MongoStore = require('connect-mongo');
 
 // Connect to MongoDB
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl, {
+    serverSelectionTimeoutMS: 30000
+}).catch(err => {
+    console.error('Mongo initial connection error:', err.message);
+});
 const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
+db.on("error", err => {
+    console.error("Mongo runtime error:", err.message);
+});
 db.once("open", () => {
     console.log("Database connected");
 });
@@ -60,10 +66,10 @@ app.use(mongoSanitize({
 
 // Configure session store in MongoDB
 const store = MongoStore.create({
-    mongoUrl: dbUrl,
-    touchAfter: 24 * 60 * 60, // Session will only be updated once every 24 hrs
+    client: mongoose.connection.getClient(),
+    touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisshouldbeabettersecret!' // Used to encrypt session data
+        secret: process.env.SESSION_SECRET || 'fallbacksecret'
     }
 });
 
