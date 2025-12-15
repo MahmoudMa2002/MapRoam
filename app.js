@@ -63,7 +63,7 @@ const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60, // Session will only be updated once every 24 hrs
     crypto: {
-        secret: 'thisshouldbeabettersecret!' // Used to encrypt session data
+        secret: 'thisshouldbeabettersecret!' // Used to encrypt session data 
     }
 });
 
