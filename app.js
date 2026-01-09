@@ -24,17 +24,24 @@ const placesRoutes = require('./routes/places');
 const reviewsRoutes = require('./routes/reviews');
 
 // MongoDB connection string from environment variable
-const dbUrl = process.env.DB_URL;
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
 
 // Mongo session store
 const MongoStore = require('connect-mongo');
 
 // Connect to MongoDB
-mongoose.connect(dbUrl);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", () => {
-    console.log("Database connected");
+mongoose.connect(dbUrl)
+    .then(() => {
+        console.log("MongoDB Connected Successfully!");
+    })
+    .catch(err => {
+        console.error("MongoDB Connection Error:");
+        console.error(err.message);
+        process.exit(1);
+    });
+
+mongoose.connection.on('error', err => {
+    console.error('MongoDB runtime error:', err);
 });
 
 const app = express();
